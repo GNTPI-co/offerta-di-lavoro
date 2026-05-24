@@ -1,0 +1,1200 @@
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GNTPI - Gruppo Nazionale dei Lavori Pubblici Italia</title>
+    <meta name="description" content="GNTPI - Entreprise spécialisée dans les travaux routiers et infrastructures publiques en Italie">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gntpi: {
+                            blue: '#1e3a8a',
+                            dark: '#0f172a',
+                            steel: '#4b5563',
+                            light: '#f8fafc',
+                            italian: {
+                                green: '#009246',
+                                red: '#ce2b37'
+                            }
+                        }
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                        montserrat: ['Montserrat', 'sans-serif'],
+                        poppins: ['Poppins', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        .font-montserrat { font-family: 'Montserrat', sans-serif; }
+        .font-poppins { font-family: 'Poppins', sans-serif; }
+        
+        /* Smooth scrolling */
+        html { scroll-behavior: smooth; }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #1e3a8a; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #1e40af; }
+        
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .animate-float { animation: float 3s ease-in-out infinite; }
+        .animate-slide-in { animation: slideIn 0.8s ease-out forwards; }
+        
+        /* Glass morphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        .glass-dark {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+        }
+        
+        /* Italian flag gradient border */
+        .italian-border {
+            position: relative;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        
+        .italian-border::before {
+            content: '';
+            position: absolute;
+            top: -3px; left: -3px; right: -3px; bottom: -3px;
+            background: linear-gradient(45deg, #009246 33%, white 33%, white 66%, #ce2b37 66%);
+            border-radius: 18px;
+            z-index: -1;
+        }
+        
+        /* Form styling */
+        .form-input {
+            transition: all 0.3s ease;
+            border: 2px solid #e5e7eb;
+        }
+        
+        .form-input:focus {
+            border-color: #1e3a8a;
+            box-shadow: 0 0 0 4px rgba(30, 58, 138, 0.1);
+            outline: none;
+        }
+        
+        /* Button hover effects */
+        .btn-premium {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-premium::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn-premium:hover::before {
+            left: 100%;
+        }
+        
+        /* Hide sections by default */
+        .page-section {
+            display: none;
+            animation: slideIn 0.5s ease-out;
+        }
+        
+        .page-section.active {
+            display: block;
+        }
+        
+        /* Image hover zoom */
+        .img-zoom {
+            overflow: hidden;
+        }
+        
+        .img-zoom img {
+            transition: transform 0.5s ease;
+        }
+        
+        .img-zoom:hover img {
+            transform: scale(1.1);
+        }
+        
+        /* Counter animation */
+        .counter {
+            font-variant-numeric: tabular-nums;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass border-b border-slate-200 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="showPage('home')">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-12 h-12 bg-gradient-to-br from-gntpi-italian-green via-white to-gntpi-italian-red rounded-lg flex items-center justify-center shadow-lg">
+                            <span class="font-montserrat font-bold text-gntpi-blue text-xl">G</span>
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="font-montserrat font-bold text-xl text-gntpi-blue tracking-tight">GNTPI</span>
+                            <span class="text-xs text-gntpi-steel font-poppins tracking-wider">GRUPPO NAZIONALE</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <button onclick="showPage('home')" class="nav-link text-slate-700 hover:text-gntpi-blue font-medium transition-colors" data-key="home">Accueil</button>
+                    <button onclick="showPage('apply')" class="nav-link text-slate-700 hover:text-gntpi-blue font-medium transition-colors" data-key="apply">Candidater</button>
+                    <button onclick="showPage('admin')" class="nav-link text-slate-700 hover:text-gntpi-blue font-medium transition-colors" data-key="admin">Admin</button>
+                    
+                    <!-- Language Selector -->
+                    <div class="relative group">
+                        <button class="flex items-center space-x-2 px-4 py-2 rounded-full border border-slate-300 hover:border-gntpi-blue transition-colors">
+                            <i class="fas fa-globe text-gntpi-blue"></i>
+                            <span id="current-lang" class="font-medium text-sm">IT</span>
+                            <i class="fas fa-chevron-down text-xs text-slate-400"></i>
+                        </button>
+                        <div class="absolute right-0 mt-2 w-32 bg-white rounded-xl shadow-xl border border-slate-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top-right">
+                            <button onclick="changeLanguage('it')" class="block w-full text-left px-4 py-3 hover:bg-slate-50 first:rounded-t-xl transition-colors flex items-center space-x-2">
+                                <span class="w-6 h-4 bg-gradient-to-r from-green-600 via-white to-red-600 rounded-sm"></span>
+                                <span>Italiano</span>
+                            </button>
+                            <button onclick="changeLanguage('fr')" class="block w-full text-left px-4 py-3 hover:bg-slate-50 transition-colors flex items-center space-x-2">
+                                <span class="w-6 h-4 bg-gradient-to-r from-blue-700 via-white to-red-600 rounded-sm"></span>
+                                <span>Français</span>
+                            </button>
+                            <button onclick="changeLanguage('en')" class="block w-full text-left px-4 py-3 hover:bg-slate-50 last:rounded-b-xl transition-colors flex items-center space-x-2">
+                                <span class="w-6 h-4 bg-gradient-to-r from-blue-800 via-white to-red-700 rounded-sm"></span>
+                                <span>English</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button onclick="toggleMobileMenu()" class="text-slate-700 hover:text-gntpi-blue focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-200">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <button onclick="showPage('home')" class="block w-full text-left px-3 py-3 text-base font-medium text-slate-700 hover:text-gntpi-blue hover:bg-slate-50 rounded-lg" data-key="home">Accueil</button>
+                <button onclick="showPage('apply')" class="block w-full text-left px-3 py-3 text-base font-medium text-slate-700 hover:text-gntpi-blue hover:bg-slate-50 rounded-lg" data-key="apply">Candidater</button>
+                <button onclick="showPage('admin')" class="block w-full text-left px-3 py-3 text-base font-medium text-slate-700 hover:text-gntpi-blue hover:bg-slate-50 rounded-lg" data-key="admin">Admin</button>
+                <div class="pt-4 border-t border-slate-200 mt-2">
+                    <p class="px-3 text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Seleziona lingua</p>
+                    <div class="flex space-x-2 px-3">
+                        <button onclick="changeLanguage('it')" class="flex-1 py-2 px-3 rounded-lg bg-slate-100 hover:bg-slate-200 text-sm font-medium">🇮🇹 IT</button>
+                        <button onclick="changeLanguage('fr')" class="flex-1 py-2 px-3 rounded-lg bg-slate-100 hover:bg-slate-200 text-sm font-medium">🇫🇷 FR</button>
+                        <button onclick="changeLanguage('en')" class="flex-1 py-2 px-3 rounded-lg bg-slate-100 hover:bg-slate-200 text-sm font-medium">🇬🇧 EN</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- PAGE: HOME -->
+    <section id="page-home" class="page-section active pt-20">
+        <!-- Hero Section -->
+        <div class="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
+            <div class="absolute inset-0 z-0">
+                <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop" alt="Construction Italy" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-r from-gntpi-blue/90 via-gntpi-blue/70 to-transparent"></div>
+            </div>
+            
+            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+                <div class="max-w-3xl" data-aos="fade-up">
+                    <div class="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white mb-6">
+                        <span class="w-2 h-2 rounded-full bg-gntpi-italian-green animate-pulse"></span>
+                        <span class="text-sm font-medium tracking-wide uppercase" data-key="heroBadge">Lavori Pubblici Italia</span>
+                    </div>
+                    
+                    <h1 class="font-montserrat font-bold text-5xl md:text-7xl text-white leading-tight mb-6">
+                        GNTPI<br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-200 to-slate-400">Gruppo Nazionale</span><br>
+                        <span class="text-3xl md:text-5xl font-light">dei Lavori Pubblici Italia</span>
+                    </h1>
+                    
+                    <p class="text-xl text-slate-200 mb-8 max-w-2xl font-light leading-relaxed" data-key="heroSubtitle">
+                        Entreprise spécialisée dans les travaux routiers et infrastructures publiques en Italie.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="showPage('apply')" class="btn-premium bg-white text-gntpi-blue px-8 py-4 rounded-full font-semibold text-lg shadow-2xl hover:shadow-xl hover:-translate-y-1 transition-all flex items-center justify-center space-x-2 group">
+                            <span data-key="btnApply">Candidater maintenant</span>
+                            <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                        </button>
+                        <button onclick="scrollToSection('about')" class="btn-premium bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-gntpi-blue transition-all" data-key="btnDiscover">
+                            Découvrir GNTPI
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Scroll indicator -->
+            <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+                <i class="fas fa-chevron-down text-white text-2xl opacity-70"></i>
+            </div>
+        </div>
+
+        <!-- Stats Section -->
+        <div class="bg-white py-16 border-b border-slate-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="text-center p-6 rounded-2xl bg-slate-50 hover:bg-blue-50 transition-colors" data-aos="fade-up" data-aos-delay="0">
+                        <div class="text-4xl font-bold text-gntpi-blue mb-2 counter" data-target="150">0</div>
+                        <div class="text-gntpi-steel font-medium" data-key="statProjects">Projets réalisés</div>
+                    </div>
+                    <div class="text-center p-6 rounded-2xl bg-slate-50 hover:bg-blue-50 transition-colors" data-aos="fade-up" data-aos-delay="100">
+                        <div class="text-4xl font-bold text-gntpi-blue mb-2 counter" data-target="300">0</div>
+                        <div class="text-gntpi-steel font-medium" data-key="statRecruits">Recrutements</div>
+                    </div>
+                    <div class="text-center p-6 rounded-2xl bg-slate-50 hover:bg-blue-50 transition-colors" data-aos="fade-up" data-aos-delay="200">
+                        <div class="text-4xl font-bold text-gntpi-blue mb-2 counter" data-target="15">0</div>
+                        <div class="text-gntpi-steel font-medium" data-key="statExperience">Ans d'expérience</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- About Section -->
+        <div id="about" class="py-24 bg-slate-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <div data-aos="fade-right">
+                        <div class="inline-block px-4 py-1 rounded-full bg-blue-100 text-gntpi-blue text-sm font-semibold mb-4">
+                            <span data-key="aboutLabel">À propos de nous</span>
+                        </div>
+                        <h2 class="font-montserrat font-bold text-4xl text-gntpi-dark mb-6" data-key="aboutTitle">Excellence dans les travaux publics</h2>
+                        <div class="space-y-4 text-slate-600 leading-relaxed">
+                            <p data-key="aboutText1">Nous sommes une entreprise spécialisée dans les travaux routiers et les chantiers de voirie en Italie.</p>
+                            <p data-key="aboutText2">Notre activité consiste à réaliser des travaux de terrassement, de pavage, d'entretien des routes et d'aménagement de chantiers publics et privés.</p>
+                            <p data-key="aboutText3">Grâce à notre expérience et à notre engagement, nous travaillons avec des équipes organisées afin de garantir qualité et sécurité.</p>
+                            <p data-key="aboutText4">Notre entreprise est en pleine croissance et manque de main-d'œuvre qualifiée.</p>
+                            <p data-key="aboutText5">Nous recrutons ouvriers, manœuvres et techniciens sérieux et motivés.</p>
+                        </div>
+                        <div class="mt-8 p-6 bg-white rounded-2xl shadow-lg border-l-4 border-gntpi-italian-green">
+                            <p class="font-semibold text-gntpi-blue text-lg" data-key="aboutCta">Rejoindre GNTPI, c'est intégrer une structure organisée offrant des opportunités durables.</p>
+                        </div>
+                    </div>
+                    <div class="relative" data-aos="fade-left">
+                        <div class="italian-border p-2">
+                            <img src="https://images.unsplash.com/photo-1590644365607-1c5a08e5f761?q=80&w=2000&auto=format&fit=crop" alt="Construction work" class="w-full h-96 object-cover rounded-xl">
+                        </div>
+                        <div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl max-w-xs hidden md:block">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 bg-gntpi-italian-green rounded-full flex items-center justify-center text-white">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <div>
+                                    <div class="font-bold text-gntpi-dark">Certificazione</div>
+                                    <div class="text-sm text-slate-500">ISO 9001:2015</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gallery Section -->
+        <div class="py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h2 class="font-montserrat font-bold text-4xl text-gntpi-dark mb-4" data-key="galleryTitle">Nos chantiers</h2>
+                    <p class="text-slate-600 max-w-2xl mx-auto" data-key="gallerySubtitle">Découvrez nos projets d'infrastructure à travers l'Italie</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="img-zoom rounded-2xl overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="0">
+                        <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=1000&auto=format&fit=crop" alt="Road construction" class="w-full h-64 object-cover">
+                        <div class="p-4 bg-white">
+                            <h3 class="font-semibold text-gntpi-dark">Autostrada A1</h3>
+                            <p class="text-sm text-slate-500">Milano - Napoli</p>
+                        </div>
+                    </div>
+                    <div class="img-zoom rounded-2xl overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="100">
+                        <img src="https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?q=80&w=1000&auto=format&fit=crop" alt="Highway work" class="w-full h-64 object-cover">
+                        <div class="p-4 bg-white">
+                            <h3 class="font-semibold text-gntpi-dark">Ponti e viadotti</h3>
+                            <p class="text-sm text-slate-500">Toscana</p>
+                        </div>
+                    </div>
+                    <div class="img-zoom rounded-2xl overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="200">
+                        <img src="https://images.unsplash.com/photo-1449157291145-7efd050a4d0e?q=80&w=1000&auto=format&fit=crop" alt="Urban infrastructure" class="w-full h-64 object-cover">
+                        <div class="p-4 bg-white">
+                            <h3 class="font-semibold text-gntpi-dark">Urbanizzazione</h3>
+                            <p class="text-sm text-slate-500">Roma Centro</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="py-24 bg-gntpi-blue relative overflow-hidden">
+            <div class="absolute inset-0 opacity-10">
+                <img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=2000&auto=format&fit=crop" class="w-full h-full object-cover">
+            </div>
+            <div class="max-w-4xl mx-auto px-4 relative z-10 text-center" data-aos="zoom-in">
+                <h2 class="font-montserrat font-bold text-4xl md:text-5xl text-white mb-6" data-key="ctaTitle">Prêt à rejoindre notre équipe ?</h2>
+                <p class="text-xl text-blue-100 mb-8" data-key="ctaSubtitle">Des opportunités passionnantes vous attendent dans le secteur des travaux publics en Italie.</p>
+                <button onclick="showPage('apply')" class="btn-premium bg-white text-gntpi-blue px-10 py-5 rounded-full font-bold text-lg shadow-2xl hover:shadow-xl hover:-translate-y-1 transition-all inline-flex items-center space-x-3">
+                    <span data-key="btnApplyNow">Postuler maintenant</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAGE: APPLY -->
+    <section id="page-apply" class="page-section pt-20 min-h-screen bg-slate-50">
+        <div class="py-16 bg-gntpi-blue">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up">
+                <h1 class="font-montserrat font-bold text-4xl md:text-5xl text-white mb-4" data-key="applyTitle">Candidater</h1>
+                <p class="text-blue-100 text-lg" data-key="applySubtitle">Rejoignez le GNTPI et construisez votre avenir en Italie</p>
+            </div>
+        </div>
+
+        <div class="max-w-3xl mx-auto px-4 py-12 -mt-10">
+            <div class="bg-white rounded-3xl shadow-2xl p-8 md:p-12" data-aos="fade-up">
+                <form id="applicationForm" class="space-y-6" onsubmit="submitApplication(event)">
+                    <!-- Personal Info -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-2" data-key="labelName">Nom et prénom *</label>
+                            <input type="text" name="fullname" required class="form-input w-full px-4 py-3 rounded-xl bg-slate-50" placeholder="Mario Rossi">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-2" data-key="labelBirth">Date de naissance *</label>
+                            <input type="date" name="birthdate" required class="form-input w-full px-4 py-3 rounded-xl bg-slate-50">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-2" data-key="labelAddress">Adresse complète *</label>
+                        <input type="text" name="address" required class="form-input w-full px-4 py-3 rounded-xl bg-slate-50" placeholder="Via Roma 123, 00100 Roma (RM)">
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-2" data-key="labelPhone">Téléphone *</label>
+                            <input type="tel" name="phone" required class="form-input w-full px-4 py-3 rounded-xl bg-slate-50" placeholder="+39 123 456 7890">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-2" data-key="labelEmail">Email *</label>
+                            <input type="email" name="email" required class="form-input w-full px-4 py-3 rounded-xl bg-slate-50" placeholder="email@example.com">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-2" data-key="labelNationality">Nationalité *</label>
+                        <select name="nationality" required class="form-input w-full px-4 py-3 rounded-xl bg-slate-50">
+                            <option value="">-- Sélectionner --</option>
+                            <option value="italian">Italiana</option>
+                            <option value="french">Française</option>
+                            <option value="romanian">Rumena</option>
+                            <option value="other">Altra</option>
+                        </select>
+                    </div>
+
+                    <!-- Documents -->
+                    <div class="border-t border-slate-200 pt-6 mt-6">
+                        <h3 class="font-semibold text-lg text-gntpi-dark mb-4" data-key="docsTitle">Documents requis</h3>
+                        
+                        <div class="space-y-4">
+                            <div class="p-6 border-2 border-dashed border-slate-300 rounded-xl bg-slate-50 hover:bg-blue-50 transition-colors relative">
+                                <input type="file" name="idDoc" id="idDoc" accept="image/*,.pdf" required class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" onchange="handleFileSelect(this, 'idPreview')">
+                                <div class="text-center" id="idPreview">
+                                    <i class="fas fa-id-card text-4xl text-slate-400 mb-2"></i>
+                                    <p class="text-sm font-medium text-slate-700" data-key="uploadId">Passeport ou Photo d'identité *</p>
+                                    <p class="text-xs text-slate-500 mt-1">Cliquez pour télécharger</p>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-2" data-key="labelIban">IBAN bancaire *</label>
+                                <input type="text" name="iban" required class="form-input w-full px-4 py-3 rounded-xl bg-slate-50 uppercase" placeholder="IT60 X054 2811 1010 0000 0123 456" pattern="[a-zA-Z0-9 ]{15,34}">
+                                <p class="text-xs text-slate-500 mt-1" data-key="ibanHelp">Nécessaire pour le paiement du salaire</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-4">
+                        <button type="submit" class="btn-premium w-full bg-gntpi-blue text-white py-4 rounded-xl font-bold text-lg shadow-lg hover:bg-blue-800 transition-all flex items-center justify-center space-x-2">
+                            <i class="fas fa-paper-plane"></i>
+                            <span data-key="btnSubmit">Envoyer ma candidature</span>
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Success Message (Hidden by default) -->
+                <div id="successMessage" class="hidden text-center py-12">
+                    <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-check text-3xl text-green-600"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gntpi-dark mb-2" data-key="successTitle">Grazie!</h3>
+                    <p class="text-slate-600" id="successText" data-key="successText">La tua candidatura è stata inviata con successo.</p>
+                    <button onclick="showPage('home')" class="mt-6 text-gntpi-blue font-semibold hover:underline" data-key="btnBack">Retour à l'accueil</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAGE: ADMIN -->
+    <section id="page-admin" class="page-section pt-20 min-h-screen bg-slate-100">
+        <!-- Login Screen -->
+        <div id="adminLogin" class="min-h-[80vh] flex items-center justify-center">
+            <div class="bg-white p-8 rounded-3xl shadow-2xl w-full max-w-md mx-4" data-aos="zoom-in">
+                <div class="text-center mb-8">
+                    <div class="w-16 h-16 bg-gntpi-blue rounded-2xl flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-lock text-2xl text-white"></i>
+                    </div>
+                    <h2 class="font-montserrat font-bold text-2xl text-gntpi-dark">Area Admin</h2>
+                    <p class="text-slate-500 text-sm mt-2">Accesso riservato</p>
+                </div>
+                
+                <form onsubmit="checkAdminPassword(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-1">Password</label>
+                        <input type="password" id="adminPassword" class="form-input w-full px-4 py-3 rounded-xl bg-slate-50" placeholder="••••••••" required>
+                    </div>
+                    <button type="submit" class="w-full bg-gntpi-blue text-white py-3 rounded-xl font-semibold hover:bg-blue-800 transition-colors">
+                        Accedi
+                    </button>
+                    <p id="loginError" class="text-red-500 text-sm text-center hidden">Password errata</p>
+                </form>
+            </div>
+        </div>
+
+        <!-- Dashboard (Hidden by default) -->
+        <div id="adminDashboard" class="hidden">
+            <!-- Header -->
+            <div class="bg-gntpi-blue text-white py-6">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+                    <div>
+                        <h1 class="font-montserrat font-bold text-2xl">Dashboard Admin</h1>
+                        <p class="text-blue-200 text-sm">Gestione candidature GNTPI</p>
+                    </div>
+                    <button onclick="logoutAdmin()" class="px-4 py-2 bg-white/10 rounded-lg hover:bg-white/20 transition-colors text-sm">
+                        <i class="fas fa-sign-out-alt mr-2"></i>Logout
+                    </button>
+                </div>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="max-w-7xl mx-auto px-4 py-8">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-slate-500 text-sm">Total candidature</p>
+                                <p class="text-3xl font-bold text-gntpi-blue" id="totalApps">0</p>
+                            </div>
+                            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center text-gntpi-blue">
+                                <i class="fas fa-users text-xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-slate-500 text-sm">Nuove oggi</p>
+                                <p class="text-3xl font-bold text-green-600" id="todayApps">0</p>
+                            </div>
+                            <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center text-green-600">
+                                <i class="fas fa-user-plus text-xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-slate-500 text-sm">In attesa</p>
+                                <p class="text-3xl font-bold text-orange-500" id="pendingApps">0</p>
+                            </div>
+                            <div class="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center text-orange-500">
+                                <i class="fas fa-clock text-xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Search and Filter -->
+                <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200 mb-6 flex flex-col md:flex-row gap-4">
+                    <div class="flex-1 relative">
+                        <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400"></i>
+                        <input type="text" id="searchInput" onkeyup="filterApplications()" placeholder="Cerca per nome, email..." class="w-full pl-12 pr-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-gntpi-blue focus:outline-none">
+                    </div>
+                    <div class="flex gap-2">
+                        <button onclick="exportData()" class="px-6 py-3 bg-gntpi-blue text-white rounded-xl hover:bg-blue-800 transition-colors flex items-center space-x-2">
+                            <i class="fas fa-download"></i>
+                            <span>Esporta JSON</span>
+                        </button>
+                        <button onclick="clearAllData()" class="px-6 py-3 bg-red-100 text-red-600 rounded-xl hover:bg-red-200 transition-colors">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Applications Table -->
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead class="bg-slate-50 border-b border-slate-200">
+                                <tr>
+                                    <th class="px-6 py-4 text-left text-xs font-semibold text-slate-500 uppercase">Data</th>
+                                    <th class="px-6 py-4 text-left text-xs font-semibold text-slate-500 uppercase">Candidato</th>
+                                    <th class="px-6 py-4 text-left text-xs font-semibold text-slate-500 uppercase">Contatto</th>
+                                    <th class="px-6 py-4 text-left text-xs font-semibold text-slate-500 uppercase">Nazionalità</th>
+                                    <th class="px-6 py-4 text-left text-xs font-semibold text-slate-500 uppercase">Documenti</th>
+                                    <th class="px-6 py-4 text-left text-xs font-semibold text-slate-500 uppercase">Azioni</th>
+                                </tr>
+                            </thead>
+                            <tbody id="applicationsTableBody" class="divide-y divide-slate-200">
+                                <!-- Populated by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="emptyState" class="p-12 text-center text-slate-500 hidden">
+                        <i class="fas fa-inbox text-4xl mb-4 text-slate-300"></i>
+                        <p>Nessuna candidatura trovata</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detail Modal -->
+        <div id="detailModal" class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+            <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl" data-aos="zoom-in">
+                <div class="p-6 border-b border-slate-200 flex justify-between items-center">
+                    <h3 class="font-bold text-xl text-gntpi-dark">Dettagli Candidatura</h3>
+                    <button onclick="closeModal()" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center transition-colors">
+                        <i class="fas fa-times text-slate-600"></i>
+                    </button>
+                </div>
+                <div class="p-6 space-y-4" id="modalContent">
+                    <!-- Populated by JS -->
+                </div>
+                <div class="p-6 border-t border-slate-200 bg-slate-50 rounded-b-3xl flex justify-end space-x-3">
+                    <button onclick="closeModal()" class="px-6 py-2 rounded-xl border border-slate-300 hover:bg-slate-100 transition-colors">Chiudi</button>
+                    <button onclick="deleteCurrentApplication()" class="px-6 py-2 rounded-xl bg-red-100 text-red-600 hover:bg-red-200 transition-colors">Elimina</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gntpi-dark text-white pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-10 h-10 bg-gradient-to-br from-gntpi-italian-green via-white to-gntpi-italian-red rounded-lg flex items-center justify-center">
+                            <span class="font-montserrat font-bold text-gntpi-blue">G</span>
+                        </div>
+                        <span class="font-montserrat font-bold text-xl">GNTPI</span>
+                    </div>
+                    <p class="text-slate-400 leading-relaxed mb-6 max-w-md">
+                        Gruppo Nazionale dei Lavori Pubblici Italia - Eccellenza nelle infrastrutture e nella gestione dei lavori pubblici su tutto il territorio nazionale.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-gntpi-italian-green transition-colors">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-gntpi-italian-green transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-gntpi-italian-green transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold text-lg mb-6">Contatti</h4>
+                    <ul class="space-y-3 text-slate-400">
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-map-marker-alt mt-1 text-gntpi-italian-red"></i>
+                            <span>Via dei Lavori Pubblici 123<br>00100 Roma, Italia</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fas fa-phone text-gntpi-italian-green"></i>
+                            <span>+39 06 1234 5678</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fas fa-envelope text-white"></i>
+                            <span>info@gntpi.it</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold text-lg mb-6">Link utili</h4>
+                    <ul class="space-y-3 text-slate-400">
+                        <li><button onclick="showPage('home')" class="hover:text-white transition-colors">Home</button></li>
+                        <li><button onclick="showPage('apply')" class="hover:text-white transition-colors">Candidati</button></li>
+                        <li><button onclick="showPage('admin')" class="hover:text-white transition-colors">Area Admin</button></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-slate-500 text-sm">&copy; 2024 GNTPI - Gruppo Nazionale dei Lavori Pubblici Italia. All rights reserved.</p>
+                <div class="flex items-center space-x-2 mt-4 md:mt-0">
+                    <span class="w-3 h-3 rounded-full bg-gntpi-italian-green"></span>
+                    <span class="w-3 h-3 rounded-full bg-white"></span>
+                    <span class="w-3 h-3 rounded-full bg-gntpi-italian-red"></span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Translations
+        const translations = {
+            it: {
+                home: "Home",
+                apply: "Candidati",
+                admin: "Admin",
+                heroBadge: "Lavori Pubblici Italia",
+                heroSubtitle: "Azienda specializzata in lavori stradali e infrastrutture pubbliche in Italia.",
+                btnApply: "Candidati ora",
+                btnDiscover: "Scopri GNTPI",
+                statProjects: "Progetti completati",
+                statRecruits: "Assunzioni",
+                statExperience: "Anni di esperienza",
+                aboutLabel: "Chi siamo",
+                aboutTitle: "Eccellenza nei lavori pubblici",
+                aboutText1: "Siamo un'azienda specializzata in lavori stradali e cantieri stradali in Italia.",
+                aboutText2: "La nostra attività consiste nell'esecuzione di lavori di scavo, pavimentazione, manutenzione stradale e allestimento di cantieri pubblici e privati.",
+                aboutText3: "Grazie alla nostra esperienza e impegno, lavoriamo con team organizzati per garantire qualità e sicurezza.",
+                aboutText4: "La nostra azienda è in forte crescita e necessita di manodopera qualificata.",
+                aboutText5: "Assumiamo operai, manovali e tecnici seri e motivati.",
+                aboutCta: "Unirsi a GNTPI significa entrare a far parte di una struttura organizzata che offre opportunità durature.",
+                galleryTitle: "I nostri cantieri",
+                gallerySubtitle: "Scopri i nostri progetti infrastrutturali in tutta Italia",
+                ctaTitle: "Pronto a unirti al nostro team?",
+                ctaSubtitle: "Opportunità entusiasmanti ti aspettano nel settore dei lavori pubblici in Italia.",
+                btnApplyNow: "Candidati ora",
+                applyTitle: "Candidati",
+                applySubtitle: "Unisciti a GNTPI e costruisci il tuo futuro in Italia",
+                labelName: "Nome e cognome *",
+                labelBirth: "Data di nascita *",
+                labelAddress: "Indirizzo completo *",
+                labelPhone: "Telefono *",
+                labelEmail: "Email *",
+                labelNationality: "Nazionalità *",
+                docsTitle: "Documenti richiesti",
+                uploadId: "Passaporto o foto d'identità *",
+                labelIban: "IBAN bancario *",
+                ibanHelp: "Necessario per il pagamento dello stipendio",
+                btnSubmit: "Invia candidatura",
+                successTitle: "Grazie!",
+                successText: "La tua candidatura è stata inviata con successo.",
+                btnBack: "Torna alla home"
+            },
+            fr: {
+                home: "Accueil",
+                apply: "Candidater",
+                admin: "Admin",
+                heroBadge: "Travaux Publics Italie",
+                heroSubtitle: "Entreprise spécialisée dans les travaux routiers et infrastructures publiques en Italie.",
+                btnApply: "Candidater maintenant",
+                btnDiscover: "Découvrir GNTPI",
+                statProjects: "Projets réalisés",
+                statRecruits: "Recrutements",
+                statExperience: "Années d'expérience",
+                aboutLabel: "À propos de nous",
+                aboutTitle: "Excellence dans les travaux publics",
+                aboutText1: "Nous sommes une entreprise spécialisée dans les travaux routiers et les chantiers de voirie en Italie.",
+                aboutText2: "Notre activité consiste à réaliser des travaux de terrassement, de pavage, d'entretien des routes et d'aménagement de chantiers publics et privés.",
+                aboutText3: "Grâce à notre expérience et à notre engagement, nous travaillons avec des équipes organisées afin de garantir qualité et sécurité.",
+                aboutText4: "Notre entreprise est en pleine croissance et manque de main-d'œuvre qualifiée.",
+                aboutText5: "Nous recrutons ouvriers, manœuvres et techniciens sérieux et motivés.",
+                aboutCta: "Rejoindre GNTPI, c'est intégrer une structure organisée offrant des opportunités durables.",
+                galleryTitle: "Nos chantiers",
+                gallerySubtitle: "Découvrez nos projets d'infrastructure à travers l'Italie",
+                ctaTitle: "Prêt à rejoindre notre équipe ?",
+                ctaSubtitle: "Des opportunités passionnantes vous attendent dans le secteur des travaux publics en Italie.",
+                btnApplyNow: "Postuler maintenant",
+                applyTitle: "Candidater",
+                applySubtitle: "Rejoignez le GNTPI et construisez votre avenir en Italie",
+                labelName: "Nom et prénom *",
+                labelBirth: "Date de naissance *",
+                labelAddress: "Adresse complète *",
+                labelPhone: "Téléphone *",
+                labelEmail: "Email *",
+                labelNationality: "Nationalité *",
+                docsTitle: "Documents requis",
+                uploadId: "Passeport ou Photo d'identité *",
+                labelIban: "IBAN bancaire *",
+                ibanHelp: "Nécessaire pour le paiement du salaire",
+                btnSubmit: "Envoyer ma candidature",
+                successTitle: "Merci !",
+                successText: "Votre candidature a été envoyée avec succès.",
+                btnBack: "Retour à l'accueil"
+            },
+            en: {
+                home: "Home",
+                apply: "Apply",
+                admin: "Admin",
+                heroBadge: "Public Works Italy",
+                heroSubtitle: "Company specialized in road works and public infrastructure in Italy.",
+                btnApply: "Apply now",
+                btnDiscover: "Discover GNTPI",
+                statProjects: "Completed projects",
+                statRecruits: "Recruitments",
+                statExperience: "Years of experience",
+                aboutLabel: "About us",
+                aboutTitle: "Excellence in public works",
+                aboutText1: "We are a company specialized in road works and road construction sites in Italy.",
+                aboutText2: "Our business consists of carrying out earthworks, paving, road maintenance and public and private construction site setup work.",
+                aboutText3: "Thanks to our experience and commitment, we work with organized teams to guarantee quality and safety.",
+                aboutText4: "Our company is growing rapidly and lacks qualified manpower.",
+                aboutText5: "We are recruiting serious and motivated workers, laborers and technicians.",
+                aboutCta: "Joining GNTPI means joining an organized structure offering sustainable opportunities.",
+                galleryTitle: "Our construction sites",
+                gallerySubtitle: "Discover our infrastructure projects throughout Italy",
+                ctaTitle: "Ready to join our team?",
+                ctaSubtitle: "Exciting opportunities await you in the public works sector in Italy.",
+                btnApplyNow: "Apply now",
+                applyTitle: "Apply",
+                applySubtitle: "Join GNTPI and build your future in Italy",
+                labelName: "Full name *",
+                labelBirth: "Date of birth *",
+                labelAddress: "Full address *",
+                labelPhone: "Phone *",
+                labelEmail: "Email *",
+                labelNationality: "Nationality *",
+                docsTitle: "Required documents",
+                uploadId: "Passport or ID photo *",
+                labelIban: "Bank IBAN *",
+                ibanHelp: "Required for salary payment",
+                btnSubmit: "Submit my application",
+                successTitle: "Thank you!",
+                successText: "Your application has been submitted successfully.",
+                btnBack: "Back to home"
+            }
+        };
+
+        let currentLang = localStorage.getItem('gntpi-lang') || 'it';
+        let applications = JSON.parse(localStorage.getItem('gntpi-applications') || '[]');
+        let currentDetailId = null;
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            AOS.init({
+                duration: 800,
+                once: true,
+                offset: 100
+            });
+            
+            changeLanguage(currentLang, false);
+            animateCounters();
+            
+            // Check if user is logged in as admin
+            if (sessionStorage.getItem('gntpi-admin') === 'true') {
+                showAdminDashboard();
+            }
+        });
+
+        // Language functions
+        function changeLanguage(lang, save = true) {
+            currentLang = lang;
+            if (save) localStorage.setItem('gntpi-lang', lang);
+            
+            document.getElementById('current-lang').textContent = lang.toUpperCase();
+            document.documentElement.lang = lang;
+            
+            // Update all elements with data-key
+            document.querySelectorAll('[data-key]').forEach(el => {
+                const key = el.getAttribute('data-key');
+                if (translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+            
+            // Update success message if visible
+            const successText = document.getElementById('successText');
+            if (successText && !document.getElementById('successMessage').classList.contains('hidden')) {
+                successText.textContent = translations[lang].successText;
+            }
+        }
+
+        // Navigation
+        function showPage(page) {
+            // Hide all pages
+            document.querySelectorAll('.page-section').forEach(el => {
+                el.classList.remove('active');
+            });
+            
+            // Show selected page
+            document.getElementById('page-' + page).classList.add('active');
+            
+            // Close mobile menu if open
+            document.getElementById('mobile-menu').classList.add('hidden');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+            
+            // Refresh admin if needed
+            if (page === 'admin' && sessionStorage.getItem('gntpi-admin') === 'true') {
+                renderApplications();
+            }
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Counter animation
+        function animateCounters() {
+            const counters = document.querySelectorAll('.counter');
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                const duration = 2000;
+                const increment = target / (duration / 16);
+                let current = 0;
+                
+                const updateCounter = () => {
+                    current += increment;
+                    if (current < target) {
+                        counter.textContent = Math.floor(current);
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        counter.textContent = target + '+';
+                    }
+                };
+                
+                // Start when visible
+                const observer = new IntersectionObserver((entries) => {
+                    if (entries[0].isIntersecting) {
+                        updateCounter();
+                        observer.disconnect();
+                    }
+                });
+                observer.observe(counter);
+            });
+        }
+
+        // File upload preview
+        function handleFileSelect(input, previewId) {
+            const file = input.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const preview = document.getElementById(previewId);
+                    preview.innerHTML = `
+                        <div class="flex flex-col items-center">
+                            <i class="fas fa-check-circle text-4xl text-green-500 mb-2"></i>
+                            <p class="text-sm font-medium text-green-700">${file.name}</p>
+                            <p class="text-xs text-slate-500">Clicca per cambiare</p>
+                        </div>
+                    `;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Form submission
+        function submitApplication(e) {
+            e.preventDefault();
+            
+            const form = e.target;
+            const formData = new FormData(form);
+            
+            // Create application object
+            const application = {
+                id: Date.now(),
+                date: new Date().toISOString(),
+                fullname: formData.get('fullname'),
+                birthdate: formData.get('birthdate'),
+                address: formData.get('address'),
+                phone: formData.get('phone'),
+                email: formData.get('email'),
+                nationality: formData.get('nationality'),
+                iban: formData.get('iban'),
+                idDoc: document.getElementById('idPreview').innerHTML.includes('check-circle') ? 'uploaded' : null
+            };
+            
+            // Save to localStorage
+            applications.unshift(application);
+            localStorage.setItem('gntpi-applications', JSON.stringify(applications));
+            
+            // Show success message
+            form.classList.add('hidden');
+            document.getElementById('successMessage').classList.remove('hidden');
+            
+            // Reset form
+            form.reset();
+            document.getElementById('idPreview').innerHTML = `
+                <i class="fas fa-id-card text-4xl text-slate-400 mb-2"></i>
+                <p class="text-sm font-medium text-slate-700">Passaporto o foto d'identità *</p>
+                <p class="text-xs text-slate-500 mt-1">Clicca per caricare</p>
+            `;
+        }
+
+        // Admin functions
+        function checkAdminPassword(e) {
+            e.preventDefault();
+            const password = document.getElementById('adminPassword').value;
+            
+            if (password === 'dosyov2005') {
+                sessionStorage.setItem('gntpi-admin', 'true');
+                showAdminDashboard();
+            } else {
+                document.getElementById('loginError').classList.remove('hidden');
+            }
+        }
+
+        function showAdminDashboard() {
+            document.getElementById('adminLogin').classList.add('hidden');
+            document.getElementById('adminDashboard').classList.remove('hidden');
+            renderApplications();
+        }
+
+        function logoutAdmin() {
+            sessionStorage.removeItem('gntpi-admin');
+            document.getElementById('adminDashboard').classList.add('hidden');
+            document.getElementById('adminLogin').classList.remove('hidden');
+            document.getElementById('adminPassword').value = '';
+            document.getElementById('loginError').classList.add('hidden');
+        }
+
+        function renderApplications() {
+            const tbody = document.getElementById('applicationsTableBody');
+            const emptyState = document.getElementById('emptyState');
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            
+            // Filter applications
+            const filtered = applications.filter(app => 
+                app.fullname.toLowerCase().includes(searchTerm) || 
+                app.email.toLowerCase().includes(searchTerm)
+            );
+            
+            // Update stats
+            document.getElementById('totalApps').textContent = applications.length;
+            
+            const today = new Date().toDateString();
+            const todayCount = applications.filter(app => new Date(app.date).toDateString() === today).length;
+            document.getElementById('todayApps').textContent = todayCount;
+            document.getElementById('pendingApps').textContent = applications.length; // All are pending by default
+            
+            // Render table
+            if (filtered.length === 0) {
+                tbody.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                return;
+            }
+            
+            emptyState.classList.add('hidden');
+            tbody.innerHTML = filtered.map(app => {
+                const date = new Date(app.date).toLocaleDateString('it-IT');
+                const time = new Date(app.date).toLocaleTimeString('it-IT', {hour: '2-digit', minute:'2-digit'});
+                
+                return `
+                    <tr class="hover:bg-slate-50 transition-colors">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600">
+                            <div class="font-medium">${date}</div>
+                            <div class="text-xs text-slate-400">${time}</div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="font-medium text-gntpi-dark">${app.fullname}</div>
+                            <div class="text-xs text-slate-500">Nato il: ${app.birthdate}</div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600">
+                            <div>${app.email}</div>
+                            <div class="text-slate-400">${app.phone}</div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <span class="px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800 capitalize">
+                                ${app.nationality}
+                            </span>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            ${app.idDoc ? '<i class="fas fa-check-circle text-green-500"></i>' : '<i class="fas fa-times-circle text-red-400"></i>'}
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm">
+                            <button onclick="showDetail(${app.id})" class="text-gntpi-blue hover:text-blue-800 font-medium mr-3">Dettagli</button>
+                            <button onclick="downloadApplication(${app.id})" class="text-slate-400 hover:text-slate-600"><i class="fas fa-download"></i></button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function filterApplications() {
+            renderApplications();
+        }
+
+        function showDetail(id) {
+            currentDetailId = id;
+            const app = applications.find(a => a.id === id);
+            if (!app) return;
+            
+            const modal = document.getElementById('detailModal');
+            const content = document.getElementById('modalContent');
+            
+            content.innerHTML = `
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="bg-slate-50 p-4 rounded-xl">
+                        <label class="text-xs font-semibold text-slate-500 uppercase">Nome Completo</label>
+                        <p class="font-medium text-lg">${app.fullname}</p>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-xl">
+                        <label class="text-xs font-semibold text-slate-500 uppercase">Data di nascita</label>
+                        <p class="font-medium">${app.birthdate}</p>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-xl md:col-span-2">
+                        <label class="text-xs font-semibold text-slate-500 uppercase">Indirizzo</label>
+                        <p class="font-medium">${app.address}</p>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-xl">
+                        <label class="text-xs font-semibold text-slate-500 uppercase">Email</label>
+                        <p class="font-medium">${app.email}</p>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-xl">
+                        <label class="text-xs font-semibold text-slate-500 uppercase">Telefono</label>
+                        <p class="font-medium">${app.phone}</p>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-xl">
+                        <label class="text-xs font-semibold text-slate-500 uppercase">Nazionalità</label>
+                        <p class="font-medium capitalize">${app.nationality}</p>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-xl">
+                        <label class="text-xs font-semibold text-slate-500 uppercase">IBAN</label>
+                        <p class="font-medium font-mono text-sm">${app.iban}</p>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-xl md:col-span-2">
+                        <label class="text-xs font-semibold text-slate-500 uppercase">Data candidatura</label>
+                        <p class="font-medium">${new Date(app.date).toLocaleString('it-IT')}</p>
+                    </div>
+                </div>
+            `;
+            
+            modal.classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('detailModal').classList.add('hidden');
+            currentDetailId = null;
+        }
+
+        function deleteCurrentApplication() {
+            if (!currentDetailId) return;
+            if (confirm('Sei sicuro di voler eliminare questa candidatura?')) {
+                applications = applications.filter(a => a.id !== currentDetailId);
+                localStorage.setItem('gntpi-applications', JSON.stringify(applications));
+                closeModal();
+                renderApplications();
+            }
+        }
+
+        function downloadApplication(id) {
+            const app = applications.find(a => a.id === id);
+            if (!app) return;
+            
+            const dataStr = JSON.stringify(app, null, 2);
+            const dataBlob = new Blob([dataStr], {type: 'application/json'});
+            const url = URL.createObjectURL(dataBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `candidatura_${app.fullname.replace(/\s+/g, '_')}_${id}.json`;
+            link.click();
+        }
+
+        function exportData() {
+            const dataStr = JSON.stringify(applications, null, 2);
+            const dataBlob = new Blob([dataStr], {type: 'application/json'});
+            const url = URL.createObjectURL(dataBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `gntpi_candidature_${new Date().toISOString().split('T')[0]}.json`;
+            link.click();
+        }
+
+        function clearAllData() {
+            if (confirm('ATTENZIONE: Questo eliminerà tutte le candidature. Sei sicuro?')) {
+                applications = [];
+                localStorage.removeItem('gntpi-applications');
+                renderApplications();
+            }
+        }
+
+        // Close modal on outside click
+        document.getElementById('detailModal').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) closeModal();
+        });
+    </script>
+</body>
+</html>
